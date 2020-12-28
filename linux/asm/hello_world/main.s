@@ -1,7 +1,7 @@
+%include	"print.inc"
+
 segment		.text
 global		_start
-
-extern		print_hello
 
 _start:
 	call print_hello
