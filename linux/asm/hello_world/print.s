@@ -17,10 +17,10 @@ print_hello:
 	mov     eax,4
 	int     0x80
 
-	pop eax
-	pop ebx
-	pop ecx
 	pop edx
+	pop ecx
+	pop ebx
+	pop eax
 
 	ret
 
