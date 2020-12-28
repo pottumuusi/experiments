@@ -1,6 +1,9 @@
-segment		.text
+segment		.data
+msg     db 'Hello, world!',0xa
+len     equ $ - msg
 
-global print_hello
+segment		.text
+global	print_hello, no_operation
 
 print_hello:
 	push eax
@@ -21,6 +24,6 @@ print_hello:
 
 	ret
 
-segment     .data
-msg     db 'Hello, world!',0xa
-len     equ $ - msg
+no_operation:
+	nop
+	ret

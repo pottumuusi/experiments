@@ -1,1 +1,1 @@
-extern		print_hello
+extern		print_hello, no_operation
