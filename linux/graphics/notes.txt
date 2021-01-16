@@ -1,0 +1,30 @@
+= Graphics on Linux =
+
+== Locations ==
+drivers/tty/vt/vt.c
+	1109 int vc_allocate(unsigned int currcons)  /* return 0 on success */
+
+	3339 /*
+	3340  * Allocate the console screen memory.
+	3341  */
+	3342 static int con_install(struct tty_driver *driver, struct tty_struct *tty)
+
+	3518 static const struct tty_operations con_ops = {
+	3519         .install = con_install,
+
+	3556 int __init vty_init(const struct file_operations *console_fops)
+	3583         tty_set_operations(console_driver, &con_ops);
+
+drivers/tty/tty_io.c
+	3512         vty_init(&console_fops);
+
+	3488 /*
+	3489  * Ok, now we can initialize the rest of the tty devices and can count
+	3490  * on memory allocations, interrupts etc..
+	3491  */
+	3492 int __init tty_init(void)
+
+drivers/video/fbdev/core/fbcon.c
+
+/home/tank/my/codes/linux/linux-5.10.7/drivers/char/mem.c
+	1097         return tty_init();
