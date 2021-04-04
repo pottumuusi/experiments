@@ -36,9 +36,11 @@ int main(void)
 		}
 
 		// Avoid overwriting -1 at the end of list.
-		if (-1 != *(fibonacci_walk + 1)) {
-			*(fibonacci_walk + 1) = *fibonacci_walk + *(fibonacci_walk - 1);
+		if (-1 == *(fibonacci_walk + 1)) {
+			break;
 		}
+
+		*(fibonacci_walk + 1) = *fibonacci_walk + *(fibonacci_walk - 1);
 
 #if DEBUG_ENABLE
 		printf("fibonacci_walk is: %llu\n", *fibonacci_walk);
