@@ -16,7 +16,8 @@ int main(void)
 	fibonacci_walk++;
 
 #if DEBUG_ENABLE
-	printf("fibonacci_walk is: %d\n\n", *fibonacci_walk);
+	printf("fibonacci_walk is: %d\n", *fibonacci_walk);
+	printf("fibonacci_walk points to: %p\n\n", fibonacci_walk);
 #endif // DEBUG_ENABLE
 
 	// TODO get rid of variable "i" and force stop by inserting -1 to the
@@ -30,6 +31,8 @@ int main(void)
 
 #if DEBUG_ENABLE
 		printf("i is: %d\n", i);
+		// printf("fibonacci_walk is: %d\n", *fibonacci_walk);
+		// printf("fibonacci_walk points to: %p\n\n", fibonacci_walk);
 
 		for (int k = 0; k < FIBONACCI_LEN; k++) {
 			printf("%d, ", fibonacci_numbers[k]);
