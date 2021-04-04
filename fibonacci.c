@@ -30,6 +30,11 @@ int main(void)
 			break;
 		}
 
+		if (-1 == *fibonacci_walk) {
+			// Encountered end of fibonacci list
+			break;
+		}
+
 		// Avoid overwriting -1 at the end of list.
 		if (-1 != *(fibonacci_walk + 1)) {
 			*(fibonacci_walk + 1) = *fibonacci_walk + *(fibonacci_walk - 1);
