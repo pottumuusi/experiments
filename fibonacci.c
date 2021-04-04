@@ -29,7 +29,13 @@ int main(void)
 		}
 
 #if DEBUG_ENABLE
-		printf("%d\n", fibonacci_numbers[i]);
+		printf("i is: %d\n", i);
+
+		for (int k = 0; k < FIBONACCI_LEN; k++) {
+			printf("%d, ", fibonacci_numbers[k]);
+		}
+
+		printf("\n");
 #endif // DEBUG_ENABLE
 
 		i++;
