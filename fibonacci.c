@@ -7,15 +7,15 @@
 
 int main(void)
 {
-	int fibonacci_numbers[FIBONACCI_LEN] = {0};
-	int* fibonacci_walk = fibonacci_numbers;
+	unsigned long long fibonacci_numbers[FIBONACCI_LEN] = {0};
+	unsigned long long* fibonacci_walk = fibonacci_numbers;
 	fibonacci_numbers[FIBONACCI_LEN - 1] = -1; // -1 marks the end of list
 
 	fibonacci_numbers[1] = 1;
 	fibonacci_walk++;
 
 #if DEBUG_ENABLE
-	printf("fibonacci_walk is: %d\n", *fibonacci_walk);
+	printf("fibonacci_walk is: %llu\n", *fibonacci_walk);
 	printf("fibonacci_walk points to: %p\n\n", fibonacci_walk);
 #endif // DEBUG_ENABLE
 
@@ -36,12 +36,12 @@ int main(void)
 		}
 
 #if DEBUG_ENABLE
-		printf("fibonacci_walk is: %d\n", *fibonacci_walk);
+		printf("fibonacci_walk is: %llu\n", *fibonacci_walk);
 		printf("fibonacci_walk points to: %p\n\n", fibonacci_walk);
 #endif // DEBUG_ENABLE
 
-		for (int k = 0; k < FIBONACCI_LEN; k++) {
-			printf("%d, ", fibonacci_numbers[k]);
+		for (unsigned int k = 0; k < FIBONACCI_LEN; k++) {
+			printf("%llu, ", fibonacci_numbers[k]);
 		}
 
 		printf("\n");
