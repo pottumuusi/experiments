@@ -35,8 +35,8 @@ int main(void)
 			break;
 		}
 
-		// Avoid overwriting -1 at the end of list.
 		if (-1 == *(fibonacci_walk + 1)) {
+			// Avoid overwriting -1 at the end of list
 			break;
 		}
 
