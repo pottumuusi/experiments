@@ -50,7 +50,6 @@ int main(void)
 		for (unsigned int k = 0; k < FIBONACCI_LEN; k++) {
 			printf("%llu, ", fibonacci_numbers[k]);
 		}
-
 		printf("\n");
 
 		fibonacci_walk++;
