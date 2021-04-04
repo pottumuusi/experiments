@@ -3,7 +3,7 @@
 #define FIBONACCI_NUMBERS_TO_PROCESS 20 // TODO pass this to compiler, instead of coding here
 #define FIBONACCI_LEN FIBONACCI_NUMBERS_TO_PROCESS
 
-#define DEBUG_ENABLE 1
+#define DEBUG_ENABLE 0
 
 int main(void)
 {
