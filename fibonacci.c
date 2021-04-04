@@ -7,10 +7,9 @@
 
 int main(void)
 {
-	int i = 0;
 	int fibonacci_numbers[FIBONACCI_LEN] = {0};
 	int* fibonacci_walk = fibonacci_numbers;
-	// TODO fibonacci_numbers[FIBONACCI_LEN - 1] = -1;
+	fibonacci_numbers[FIBONACCI_LEN - 1] = -1; // -1 marks the end of list
 
 	fibonacci_numbers[1] = 1;
 	fibonacci_walk++;
@@ -20,28 +19,34 @@ int main(void)
 	printf("fibonacci_walk points to: %p\n\n", fibonacci_walk);
 #endif // DEBUG_ENABLE
 
-	// TODO get rid of variable "i" and force stop by inserting -1 to the
-	// end of list. Also should then make the list 1 slot longer as one of
-	// the slots is always used for marking end of list.
-	while(i < FIBONACCI_LEN) {
-		if (fibonacci_numbers[i] < 0) {
-			printf("Encountered negative fibonacci number. Stopping");
+	if (-1 != fibonacci_numbers[FIBONACCI_LEN - 1]) {
+		printf("Expecting the last number of fibonacci list to be -1. Stopping.");
+		return 1;
+	}
+
+	while(1) {
+		if (*fibonacci_walk < 0) {
+			// Encountered negative fibonacci number
 			break;
 		}
 
+		// Avoid overwriting -1 at the end of list.
+		if (-1 != *(fibonacci_walk + 1)) {
+			*(fibonacci_walk + 1) = *fibonacci_walk + *(fibonacci_walk - 1);
+		}
+
 #if DEBUG_ENABLE
-		printf("i is: %d\n", i);
-		// printf("fibonacci_walk is: %d\n", *fibonacci_walk);
-		// printf("fibonacci_walk points to: %p\n\n", fibonacci_walk);
+		printf("fibonacci_walk is: %d\n", *fibonacci_walk);
+		printf("fibonacci_walk points to: %p\n\n", fibonacci_walk);
+#endif // DEBUG_ENABLE
 
 		for (int k = 0; k < FIBONACCI_LEN; k++) {
 			printf("%d, ", fibonacci_numbers[k]);
 		}
 
 		printf("\n");
-#endif // DEBUG_ENABLE
 
-		i++;
+		fibonacci_walk++;
 	}
 
 	return 0;
