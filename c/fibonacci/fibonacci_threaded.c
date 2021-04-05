@@ -1,3 +1,4 @@
+#include<pthread.h>
 #include<stdio.h>
 
 #define FIBONACCI_LEN 80
@@ -28,12 +29,16 @@ void print_fibonacci_numbers(unsigned long long const * const fibonacci_head)
 
 int main(void)
 {
+	int ret = 0;
 	unsigned long long fibonacci_numbers[FIBONACCI_LEN] = {0};
 	unsigned long long* fibonacci_walk = fibonacci_numbers;
 	fibonacci_numbers[FIBONACCI_LEN - 1] = FIBONACCI_TAIL;
 
 	fibonacci_numbers[1] = 1;
 	fibonacci_walk++;
+
+	pthread_t thread_print,
+		  thread_test;
 
 #if DEBUG_ENABLE
 	printf("fibonacci_walk is: %llu\n", *fibonacci_walk);
@@ -77,6 +82,16 @@ int main(void)
 
 #if PRINT_ONCE_ONLY
 	print_fibonacci_numbers(fibonacci_numbers);
+#if 0 // Reference for handling threads
+	ret = pthread_create(&thread_print, NULL, print_fibonacci_numbers, (void*) fibonacci_numbers);
+	if (0 != ret) {
+		printf("Failed to create thread: %d\n", ret);
+		thread_print = 0;
+	}
+	if (0 != thread_print) {
+		pthread_join(thread_print, NULL);
+	}
+#endif
 #endif // PRINT_ONCE_ONLY
 
 	return 0;
