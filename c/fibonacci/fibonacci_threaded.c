@@ -6,7 +6,9 @@
 #define FIBONACCI_TAIL -1
 
 #define DEBUG_ENABLE 0
-#define PRINT_ONCE_ONLY 1
+#define PRINT_AT_START_ENABLE 1
+#define PRINT_PROGRESS_ENABLE 0
+#define PRINT_AT_END_ENABLE 1
 
 #define PRINT_MANY_NUMBERS_PER_ROW 0
 #define PRINT_ONE_NUMBER_PER_ROW 1
@@ -76,11 +78,11 @@ void fibonacci_array_calculate_full(unsigned long long* fibonacci_numbers)
 		printf("fibonacci_walk points to: %p\n\n", fibonacci_walk);
 #endif // DEBUG_ENABLE
 
-#if !PRINT_ONCE_ONLY
+#if PRINT_PROGRESS_ENABLE
 		fibonacci_print_numbers(
 				fibonacci_numbers,
 				NUMBERS_TO_PRINT_PER_ROW);
-#endif // PRINT_ONCE_ONLY
+#endif // PRINT_PROGRESS_ENABLE
 
 		fibonacci_walk++;
 	}
@@ -95,7 +97,17 @@ int main(void)
 		  thread_test;
 
 	fibonacci_numbers[1] = 1;
+	fibonacci_numbers[18] = 2584;
+	fibonacci_numbers[19] = 4181;
+	fibonacci_numbers[38] = 39088169;
+	fibonacci_numbers[39] = 63245986;
+	fibonacci_numbers[58] = 591286729879;
+	fibonacci_numbers[59] = 956722026041;
 	fibonacci_numbers[FIBONACCI_LEN - 1] = FIBONACCI_TAIL;
+
+#if PRINT_AT_START_ENABLE
+	fibonacci_print_numbers(fibonacci_numbers, NUMBERS_TO_PRINT_PER_ROW);
+#endif // PRINT_AT_START_ENABLE
 
 	if (-1 != fibonacci_numbers[FIBONACCI_LEN - 1]) {
 		printf("Expecting the last number of fibonacci list to be -1. Stopping.");
@@ -104,7 +116,7 @@ int main(void)
 
 	fibonacci_array_calculate_full(&fibonacci_numbers[1]);
 
-#if PRINT_ONCE_ONLY
+#if PRINT_AT_END_ENABLE
 	fibonacci_print_numbers(fibonacci_numbers, NUMBERS_TO_PRINT_PER_ROW);
 #if 0 // Reference for handling threads
 	ret = pthread_create(&thread_print, NULL, fibonacci_print_numbers, (void*) fibonacci_numbers);
@@ -116,7 +128,7 @@ int main(void)
 		pthread_join(thread_print, NULL);
 	}
 #endif
-#endif // PRINT_ONCE_ONLY
+#endif // PRINT_AT_END_ENABLE
 
 	return 0;
 }
