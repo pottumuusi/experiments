@@ -1,7 +1,6 @@
 #include<stdio.h>
 
-// FIBONACCI_NUMBERS_TO_PROCESS is expected to be passed here by compiler.
-#define FIBONACCI_LEN FIBONACCI_NUMBERS_TO_PROCESS
+#define FIBONACCI_LEN 80
 
 #define DEBUG_ENABLE 0
 #define PRINT_ONCE_ONLY 1
