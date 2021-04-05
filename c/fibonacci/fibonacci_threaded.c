@@ -3,7 +3,7 @@
 #include <string.h>
 
 #define FIBONACCI_LEN 80
-#define FIBONACCI_TAIL -1
+#define FIBONACCI_TAIL_TAG -1
 
 #define DEBUG_ENABLE 0
 #define PRINT_AT_START_ENABLE 1
@@ -35,7 +35,7 @@ void fibonacci_print_numbers(
 	while (1) {
 		printf("%llu%s", *fibonacci_walk, separator);
 
-		if (FIBONACCI_TAIL == *fibonacci_walk) {
+		if (FIBONACCI_TAIL_TAG == *fibonacci_walk) {
 			// Encountered end of fibonacci list
 			break;
 		}
@@ -98,7 +98,7 @@ int main(void)
 	fibonacci_numbers[39] = 63245986;
 	fibonacci_numbers[58] = 591286729879;
 	fibonacci_numbers[59] = 956722026041;
-	fibonacci_numbers[FIBONACCI_LEN - 1] = FIBONACCI_TAIL;
+	fibonacci_numbers[FIBONACCI_LEN - 1] = FIBONACCI_TAIL_TAG;
 
 #if PRINT_AT_START_ENABLE
 	fibonacci_print_numbers(fibonacci_numbers, NUMBERS_TO_PRINT_PER_ROW);
