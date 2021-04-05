@@ -4,6 +4,7 @@
 #define FIBONACCI_LEN FIBONACCI_NUMBERS_TO_PROCESS
 
 #define DEBUG_ENABLE 0
+#define PRINT_ONCE_ONLY 1
 
 int main(void)
 {
@@ -47,13 +48,22 @@ int main(void)
 		printf("fibonacci_walk points to: %p\n\n", fibonacci_walk);
 #endif // DEBUG_ENABLE
 
+#if !PRINT_ONCE_ONLY
 		for (unsigned int k = 0; k < FIBONACCI_LEN; k++) {
 			printf("%llu, ", fibonacci_numbers[k]);
 		}
 		printf("\n");
+#endif // PRINT_ONCE_ONLY
 
 		fibonacci_walk++;
 	}
+
+#if PRINT_ONCE_ONLY
+	for (unsigned int k = 0; k < FIBONACCI_LEN; k++) {
+		printf("%llu, ", fibonacci_numbers[k]);
+	}
+	printf("\n");
+#endif // PRINT_ONCE_ONLY
 
 	return 0;
 }
