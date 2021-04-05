@@ -1,15 +1,36 @@
 #include<stdio.h>
 
 #define FIBONACCI_LEN 80
+#define FIBONACCI_TAIL -1
 
 #define DEBUG_ENABLE 0
 #define PRINT_ONCE_ONLY 1
+
+void print_fibonacci_numbers(unsigned long long const * const fibonacci_head);
+
+void print_fibonacci_numbers(unsigned long long const * const fibonacci_head)
+{
+	unsigned long long const * fibonacci_walk = fibonacci_head;
+
+	while (1) {
+		if (FIBONACCI_TAIL == *fibonacci_walk) {
+			// Encountered end of fibonacci list
+			break;
+		}
+
+		printf("%llu, ", *fibonacci_walk);
+
+		fibonacci_walk++;
+	}
+
+	printf("\n");
+}
 
 int main(void)
 {
 	unsigned long long fibonacci_numbers[FIBONACCI_LEN] = {0};
 	unsigned long long* fibonacci_walk = fibonacci_numbers;
-	fibonacci_numbers[FIBONACCI_LEN - 1] = -1; // -1 marks the end of list
+	fibonacci_numbers[FIBONACCI_LEN - 1] = FIBONACCI_TAIL;
 
 	fibonacci_numbers[1] = 1;
 	fibonacci_walk++;
@@ -30,12 +51,12 @@ int main(void)
 			break;
 		}
 
-		if (-1 == *fibonacci_walk) {
+		if (FIBONACCI_TAIL == *fibonacci_walk) {
 			// Encountered end of fibonacci list
 			break;
 		}
 
-		if (-1 == *(fibonacci_walk + 1)) {
+		if (FIBONACCI_TAIL == *(fibonacci_walk + 1)) {
 			// Avoid overwriting -1 at the end of list
 			break;
 		}
@@ -48,20 +69,14 @@ int main(void)
 #endif // DEBUG_ENABLE
 
 #if !PRINT_ONCE_ONLY
-		for (unsigned int k = 0; k < FIBONACCI_LEN; k++) {
-			printf("%llu, ", fibonacci_numbers[k]);
-		}
-		printf("\n");
+		print_fibonacci_numbers(fibonacci_numbers);
 #endif // PRINT_ONCE_ONLY
 
 		fibonacci_walk++;
 	}
 
 #if PRINT_ONCE_ONLY
-	for (unsigned int k = 0; k < FIBONACCI_LEN; k++) {
-		printf("%llu, ", fibonacci_numbers[k]);
-	}
-	printf("\n");
+	print_fibonacci_numbers(fibonacci_numbers);
 #endif // PRINT_ONCE_ONLY
 
 	return 0;
