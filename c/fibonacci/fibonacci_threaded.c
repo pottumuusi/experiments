@@ -33,12 +33,12 @@ void fibonacci_print_numbers(
 	}
 
 	while (1) {
+		printf("%llu%s", *fibonacci_walk, separator);
+
 		if (FIBONACCI_TAIL == *fibonacci_walk) {
 			// Encountered end of fibonacci list
 			break;
 		}
-
-		printf("%llu%s", *fibonacci_walk, separator);
 
 		fibonacci_walk++;
 	}
