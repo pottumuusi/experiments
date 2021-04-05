@@ -17,7 +17,6 @@
 void fibonacci_print_numbers(
 		unsigned long long const * const fibonacci_head,
 		char one_per_row);
-void fibonacci_array_calculate_full(unsigned long long* fibonacci_numbers);
 void fibonacci_array_calculate_slice(unsigned long long* fibonacci_numbers);
 
 void fibonacci_print_numbers(
@@ -45,48 +44,6 @@ void fibonacci_print_numbers(
 	}
 
 	printf("\n");
-}
-
-void fibonacci_array_calculate_full(unsigned long long* fibonacci_numbers)
-{
-	unsigned long long* fibonacci_walk = fibonacci_numbers;
-
-#if DEBUG_ENABLE
-	printf("fibonacci_walk is: %llu\n", *fibonacci_walk);
-	printf("fibonacci_walk points to: %p\n\n", fibonacci_walk);
-#endif // DEBUG_ENABLE
-
-	while(1) {
-		if (*fibonacci_walk < 0) {
-			// Encountered negative fibonacci number
-			break;
-		}
-
-		if (FIBONACCI_TAIL == *fibonacci_walk) {
-			// Encountered end of fibonacci list
-			break;
-		}
-
-		if (FIBONACCI_TAIL == *(fibonacci_walk + 1)) {
-			// Avoid overwriting -1 at the end of list
-			break;
-		}
-
-		*(fibonacci_walk + 1) = *fibonacci_walk + *(fibonacci_walk - 1);
-
-#if DEBUG_ENABLE
-		printf("fibonacci_walk is: %llu\n", *fibonacci_walk);
-		printf("fibonacci_walk points to: %p\n\n", fibonacci_walk);
-#endif // DEBUG_ENABLE
-
-#if PRINT_PROGRESS_ENABLE
-		fibonacci_print_numbers(
-				fibonacci_numbers,
-				NUMBERS_TO_PRINT_PER_ROW);
-#endif // PRINT_PROGRESS_ENABLE
-
-		fibonacci_walk++;
-	}
 }
 
 void fibonacci_array_calculate_slice(unsigned long long* fibonacci_numbers)
